@@ -41,3 +41,11 @@ FROM "Ranked Songs"
 WHERE Rank <= 10
 GROUP BY "Track", "Artist"
 ORDER BY "Weeks On Chart" DESC;
+
+-- Top 10 Months with the Highest Total Streams
+SELECT DATE_TRUNC('month', TO_DATE("Release Date", 'MM/DD/YYYY')) AS "Month", 
+       SUM(CAST(REPLACE(NULLIF("Spotify Streams", ''), ',', '') AS BIGINT)) AS "Monthly Streams"
+FROM public.most_streamed_spotify_songs
+GROUP BY DATE_TRUNC('month', TO_DATE("Release Date", 'MM/DD/YYYY'))
+ORDER BY "Monthly Streams" DESC
+LIMIT 10;
