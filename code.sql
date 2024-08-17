@@ -21,7 +21,7 @@ ORDER BY "Total Streams" DESC
 LIMIT 10;
 
 -- Streaming Trends Over Time (since 1987)
-SELECT DATE_TRUNC('month', TO_DATE("Release Date", 'MM/DD/YYYY')) AS "Month", 
+SELECT TO_CHAR(DATE_TRUNC('month', TO_DATE("Release Date", 'MM/DD/YYYY')), 'YYYY-MM-DD') AS "Month", 
        SUM(CAST(REPLACE(NULLIF("Spotify Streams", ''), ',', '') AS BIGINT)) AS "Monthly Streams"
 FROM public.most_streamed_spotify_songs
 GROUP BY DATE_TRUNC('month', TO_DATE("Release Date", 'MM/DD/YYYY'))
@@ -43,7 +43,7 @@ GROUP BY "Track", "Artist"
 ORDER BY "Weeks On Chart" DESC;
 
 -- Top 10 Months with the Highest Total Streams
-SELECT DATE_TRUNC('month', TO_DATE("Release Date", 'MM/DD/YYYY')) AS "Month", 
+SELECT TO_CHAR(DATE_TRUNC('month', TO_DATE("Release Date", 'MM/DD/YYYY')), 'YYYY-MM-DD') AS "Month", 
        SUM(CAST(REPLACE(NULLIF("Spotify Streams", ''), ',', '') AS BIGINT)) AS "Monthly Streams"
 FROM public.most_streamed_spotify_songs
 GROUP BY DATE_TRUNC('month', TO_DATE("Release Date", 'MM/DD/YYYY'))
