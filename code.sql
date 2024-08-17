@@ -5,7 +5,7 @@ FROM public.most_streamed_spotify_songs;
 
 
 -- 10 Most Streamed Songs in 2024
-SELECT "Track" , "Artist" , "Spotify Streams" 
+SELECT "Track", "Artist", "Spotify Streams" 
 FROM public.most_streamed_spotify_songs
 ORDER BY "Spotify Streams" DESC
 LIMIT 10;
